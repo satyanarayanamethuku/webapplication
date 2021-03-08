@@ -8,11 +8,17 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.http import HttpResponse
 import http.client
-
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 
 #auth_token = str(uuid.uuid4())
 
 # Create your views here.
+
+CACHE_TTL = getattr(settings ,'CACHE_TTL' , DEFAULT_TIMEOUT)
+
 
 def emp_login(request):
     if request.method=='POST':
@@ -176,3 +182,29 @@ def customer_accepted(request):      # customer accepted  form
 
 def customer_rejected(request):   #customer rejected form
     return render(request,'cust_reject.html')
+
+
+def get_all_employee_data(request):
+    data=Employee.objects.all()
+    return render(request, 'emp_data.html', {'data':data})
+
+
+def get_employee_data_by_id(request, id):
+
+    if cache.get(id):
+        employee = cache.get(id)
+        print("Data from Cache")
+
+    else:
+
+        try:
+            employee = Employee.objects.get(id=id)
+            cache.set(id,employee)
+            print("data from database")
+
+        except Employee.DoesNotExist:
+
+            return redirect("/get_all_employee_data")
+
+    return render(request, 'emp_by_id.html',{'a':employee})
+    

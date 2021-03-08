@@ -14,7 +14,10 @@ urlpatterns = [
     path('customer_register/', auth_middleware(views.customer_register), name='cust_reg'),
     path('employee_profile_view/',auth_middleware(views.employee_profile_view), name='employee_profile_view'),
     path('customer_accepted/',auth_middleware(views.customer_accepted), name='customer_accepted'),
-    path('customer_rejected/',auth_middleware(views.customer_rejected), name='customer_rejected')
+    path('customer_rejected/',auth_middleware(views.customer_rejected), name='customer_rejected'),
+    path('get_all_employee_data/',auth_middleware(views.get_all_employee_data), name='get_all_employee_data'),
+    path('get_employee_data_by_id/<int:id>', views.get_employee_data_by_id, name='get_employee_data_by_id')
+
 
 
 ]

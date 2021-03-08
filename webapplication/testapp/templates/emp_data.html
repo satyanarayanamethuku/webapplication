@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emp data</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Auth Token</th>
+            <th>Created At</th>
+            <th>IS_Verified</th>
+            <th>EmployeeID</th>
+            <th>Password</th>
+            <th>Action</th>
+        </tr>
+       
+        {% for a in data %}
+            <tr>
+                <td>{{a.id}}</td>
+                <td>{{a.first_name}}</td>
+                <td>{{a.last_name}}</td>
+                <td>{{a.user_name}}</td>
+                <td>{{a.email}}</td>
+                <td>{{a.mobile}}</td>
+                <td>{{a.auth_token}}</td>
+                <td>{{a.created_at}}</td>
+                <td>{{a.is_verified}}</td>
+                <td>{{a.employee_id}}</td>
+                <td>{{a.password}}</td>
+                <td><a href="{% url 'get_employee_data_by_id' a.id %}">view</a></td>
+            </tr>
+
+        {% endfor %}
+    </table>
+</body>
+</html>
