@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login html</title>
+</head>
+<body>
+    <h1>Login Page</h1>
+
+    {% if messages %}
+
+        {% for message in messages %}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+    
+
+    
+
+    <form action="{% url 'emp_login' %}" method="POST">
+        {% csrf_token %}
+        <label for="employeeid">Employee Id:</label>
+        <input type="text" id="employeeid" name="employeeid"><br><br>
+        <label for="password">Employee Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br><br>
+    <a href="{% url 'register' %}">SignUP</a>
+    <br><br>
+    <a href="{% url 'cust_reg' %}">customer Register Page</a>
+
+</body>
+</html>

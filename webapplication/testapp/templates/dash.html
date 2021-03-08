@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dash board</title>
+</head>
+<body>
+    <h1>{{user_obj.user_name}} Welcome To Dashboard</h1>
+    <br><br>
+    <a href="{% url 'employee_logout' %}">Logout</a>
+
+    <br>
+    <a href="{% url 'cust_reg' %}">customer Register Page</a>
+    <br>
+    <a href="{% url 'employee_profile_view' %}">view employee profile</a>
+    <br>
+    <a href="{% url 'customer_accepted' %}">Customer Accepted</a>
+    <br>
+    <a href="{% url 'customer_rejected' %}">Customer Rejected</a>
+
+</body>
+</html>

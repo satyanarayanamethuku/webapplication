@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Customer Register Page</h1>
+
+    <form action="{% url 'cust_reg' %}" method="POST">
+        {% csrf_token %}
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname" required><br><br>
+
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname" required><br><br>
+
+        <label for="uname">User name:</label>
+        <input type="text" id="uname" name="uname" required><br><br>
+
+        <label for="fname">Father name:</label>
+        <input type="text" id="fname" name="fname" required><br><br>
+
+        <label for="address1">address line 1:</label>
+        <input type="text" id="address1" name="address1" required><br><br>
+
+        <label for="address2">address line 2:</label>
+        <input type="text" id="address2" name="address2" required><br><br>
+        
+        <label for="pincode">pincode:</label>
+        <input type="text" id="pincode" name="pincode" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="mnumber">Mobile number:</label>
+        <input type="text" id="mnumber" name="mnumber" required><br><br>
+
+        <label for="cdept">Employee Reference:</label>
+        <select name="cdept" required>
+            {% for  a  in emp %}
+                <option></option>
+                <option>{{a.user_name}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="cdept">customer department:</label>
+        <select name="cdept" required>
+            {% for  a  in customer %}
+                <option></option>
+                <option>{{a.dept_name}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+
+</br>
+</br>
+<a href="{% url 'emp_login' %}">Login</a>
+<br><br>
+</body>
+</html>
