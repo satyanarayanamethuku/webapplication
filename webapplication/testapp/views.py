@@ -12,6 +12,7 @@ from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
+from .task import *
 
 #auth_token = str(uuid.uuid4())
 
@@ -21,6 +22,7 @@ CACHE_TTL = getattr(settings ,'CACHE_TTL' , DEFAULT_TIMEOUT)
 
 
 def emp_login(request):
+    sleepy.delay(10)
     if request.method=='POST':
         employee_id = request.POST.get('employeeid')
         password = request.POST.get('password')
@@ -121,11 +123,13 @@ def verify(request , auth_token): # email is verifing
 
 def send_mail_after_registration(email , token): # send mail verified
     print('sending email')
-    subject = 'Your accounts need to be verified'
-    message = f'Hi paste the link to verify your account http://127.0.0.1:8000/verify/{token}'
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [email]
-    send_mail(subject, message , email_from ,recipient_list)
+    
+    send_mail_token_task(email,token)
+    # subject = 'Your accounts need to be verified'
+    # message = f'Hi paste the link to verify your account http://127.0.0.1:8000/verify/{token}'
+    # email_from = settings.EMAIL_HOST_USER
+    # recipient_list = [email]
+    # send_mail(subject, message , email_from ,recipient_list)
 
 
 def send_mail_password(email ,employee_id, password): # password and employeeid send to mail

@@ -123,13 +123,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.wealthzonetech.com'
+EMAIL_HOST = 'mail.companyname.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-
-
-EMAIL_HOST_USER = '********************'
-EMAIL_HOST_PASSWORD = '************'
+EMAIL_HOST_USER = '*******************'
+EMAIL_HOST_PASSWORD = '*****************'
 
 CACHE_TTL = 60 * 1500
 
@@ -143,3 +141,17 @@ CACHES = {
         "KEY_PREFIX": "example"
     }
 }
+
+# CELERY_RESULT_URL = 'redis://127.0.0.1:6379/1'
+# CELERY_RESULT_BACKEND ='redis://127.0.0.1:6379/1'
+# CELERY_ACCEPT_CONTENT=['application/json']
+# CELERY_RESULT_SERIALIZER='json'
+# CELERY_TASK_SELERLIZER='json'
+
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_STORE_ERRORS_EVEN_IF_IGNORED = True
